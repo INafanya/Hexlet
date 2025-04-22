@@ -1,0 +1,22 @@
+def greet(name, surname):
+    return f'Hello, {name} {surname}!'
+
+
+def partial_apply(func, name):
+    def _inner(surname):
+        return func(name, surname)
+    return _inner
+
+
+def flip(func):
+    def _inner(name, surname):
+        return func(surname, name)
+    return _inner
+    
+
+f = partial_apply(greet, 'Dorian')
+print(f('Grey'))
+print(f('Andrey'))
+
+f2 = flip(greet)
+print(f2('Christian', 'Teodor'))
